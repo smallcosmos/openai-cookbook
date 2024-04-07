@@ -8,11 +8,17 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from sklearn.metrics import average_precision_score, precision_recall_curve
 
+import os
 from openai import OpenAI
 import numpy as np
 import pandas as pd
+import dotenv
 
-client = OpenAI(max_retries=5)
+# import dotenv
+dotenv.load_dotenv()
+
+print(3333, os.environ)
+# client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
 
 def get_embedding(text: str, model="text-embedding-3-small", **kwargs) -> List[float]:
