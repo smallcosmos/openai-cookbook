@@ -17,16 +17,14 @@ import dotenv
 # import dotenv
 dotenv.load_dotenv()
 
-print(3333, os.environ['OPENAI_API_KEY'])
-# client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
-
+client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
 def get_embedding(text: str, model="text-embedding-3-small", **kwargs) -> List[float]:
     # replace newlines, which can negatively affect performance.
     text = text.replace("\n", " ")
 
     response = client.embeddings.create(input=[text], model=model, **kwargs)
-
+    print('get_embedding: ', response.usage)
     return response.data[0].embedding
 
 
